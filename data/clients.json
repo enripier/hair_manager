@@ -1,0 +1,66 @@
+[
+    {
+        "First name": "Joe",
+        "Last name": "Bi",
+        "Address": "Jo",
+        "Phone number": "000-0000",
+        "E-mail": "jo@bi.joba",
+        "Date of birth": null
+    },
+    {
+        "First name": "Beatrix",
+        "Last name": "Kiddo",
+        "Address": "43 Kill St 78432 Bill City",
+        "Phone number": "555-5478",
+        "E-mail": "beatrix@kiddo.com",
+        "Date of birth": "r"
+    },
+    {
+        "First name": "Jerry",
+        "Last name": "Kiddo",
+        "Address": "43 Kill St 78432 Bill City",
+        "Phone number": "555-5478",
+        "E-mail": "jerry@kiddo.com",
+        "Date of birth": null
+    },
+    {
+        "First name": "Kimmy",
+        "Last name": "Schmidt",
+        "Address": "66 Hamm St 78900 Jakilin",
+        "Phone number": "555-1234",
+        "E-mail": "kimmy@schmidt.com",
+        "Date of birth": "f"
+    },
+    {
+        "First name": "Harry",
+        "Last name": "Styles",
+        "Address": "20 Beatles St 78908 Palm Grove",
+        "Phone number": "555-0945",
+        "E-mail": "harry@styles.com",
+        "Date of birth": "01-29-1990"
+    },
+    {
+        "First name": "Karen",
+        "Last name": "White",
+        "Address": "99 White St 78230 Angrytown",
+        "Phone number": "555-3847",
+        "E-mail": "karen@white.com",
+        "Date of birth": null
+    },
+    {
+        "First name": "Laurie",
+        "Last name": "White",
+        "Address": "12 Furious St 78240 White Town",
+        "Phone number": "555-7483",
+        "E-mail": "laurie@white.com",
+        "Date of birth": null
+    },
+    {
+        "First name": "Kristi",
+        "Last name": "Yamaguchi",
+        "Address": "34 Flamingo St 78450 Coconut City",
+        "Phone number": "555-0912",
+        "E-mail": "kristi@yamaguchi.com",
+        "Date of birth": null
+    }
+]
