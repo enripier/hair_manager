@@ -54,7 +54,7 @@ def modify_client(client_database):
     Args:
         client_database (list of dict): Client database
     """
-    
+
     contacts.modify_contact("client", c.CLIENT_FIELDS_INFO, client_database)
 
 def delete_client(client_database):
@@ -67,35 +67,10 @@ def delete_client(client_database):
     contacts.delete_contact("client", client_database)
 
 def show_all_clients(client_database):
-    """Show client list in a table.\n
-    Only columns existing in at least one user displayed 
+    """_summary_Show client list in a table.\n
+    Only columns existing in at least one client displayed
 
     Args:
-        client_database list of dict: Client database
+        client_database (list of dict): Client database
     """
-
-    console = Console()
-
-    displayed_clients_list = data.create_name_field(client_database)
-    
-    # Créer la liste des champs visibles dynamiquement à partir des champs définis
-    visible_fields = ["Name"] + [
-        field for field in c.CLIENT_FIELDS_INFO
-        if field not in ("Last name", "First name")
-        and any(field in client for client in client_database)
-    ]
-
-    # Création du tableau
-    table = Table(title="========== List of clients ==========")
-
-    for field in visible_fields:
-        table.add_column(field)
-
-    print
-    # Ajout des clients dans chaque ligne
-    for client in displayed_clients_list:
-        row = [client.get(field, "—") for field in visible_fields]
-        table.add_row(*row)
-
-    # 4. Affichage
-    console.print(table)
+    contacts.show_all_contacts("client", c.CLIENT_FIELDS_INFO, client_database)

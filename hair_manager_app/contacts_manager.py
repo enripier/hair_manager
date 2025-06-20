@@ -1,3 +1,6 @@
+from rich.table import Table
+from rich.console import Console
+
 from . import constantes as c
 from . import app_interface as interface
 from . import data_manager as data
@@ -104,7 +107,6 @@ def delete_contact(contact_type, contact_database):
 
     # Delete contact from database
     contact_database.pop(selected_contact_index)
-    print()
     print(f"\n"
           f"Deleted {contact_type} : {contact[c.LAST_NAME]}, {contact[c.FIRST_NAME]}"
           "\n")
@@ -113,3 +115,38 @@ def delete_contact(contact_type, contact_database):
     load.save_database(contact_database)
 
     return contact_database
+
+def show_all_contacts(contact_type, FIELD_INFO, contact_database):
+    """Show contact list in a table.\n
+    Only columns existing in at least one contact displayed 
+
+    Args:
+        contact_type (str) : Displayed contact type in user prompts
+        FIELD_INFO (str): List of active fields for contact type (const)
+        contact_database (list of dict): Contact database
+    """
+
+    console = Console()
+
+    displayed_contacts_list = data.create_name_field(contact_database)
+    
+    # Create visible fields list from contact type (stored in a constant)
+    visible_fields = ["Name"] + [
+        field for field in FIELD_INFO
+        if field not in (c.LAST_NAME, c.FIRST_NAME)
+        and any(field in contact for contact in contact_database)
+    ]
+
+    # Create table
+    table = Table(title=f"========== List of {contact_type} ==========")
+
+    for field in visible_fields:
+        table.add_column(field)
+
+    # Add new line for each contact
+    for contact in displayed_contacts_list:
+        row = [contact.get(field, "—") for field in visible_fields]
+        table.add_row(*row)
+
+    # 4. Display table
+    console.print(table)
