@@ -13,7 +13,7 @@
         "Address": "43 Kill St 78432 Bill City",
         "Phone number": "555-5478",
         "E-mail": "beatrix@kiddo.com",
-        "Date of birth": "r"
+        "Date of birth": null
     },
     {
         "First name": "Jerry",
@@ -29,7 +29,7 @@
         "Address": "66 Hamm St 78900 Jakilin",
         "Phone number": "555-1234",
         "E-mail": "kimmy@schmidt.com",
-        "Date of birth": "f"
+        "Date of birth": null
     },
     {
         "First name": "Harry",
