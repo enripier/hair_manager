@@ -5,12 +5,10 @@ from . import employees_manager as employees
 from . import app_interface as interface
 
 # Contacts
-TYPE = "Type"
+CONTACT_TYPE = "Type"
 CLIENT = "Client"
 EMPLOYEE = "Employee"
 
-# Informations
-ID = "Contact ID"
 FIRST_NAME = "First name"
 LAST_NAME = "Last name"
 ADDRESS = "Address"
@@ -19,12 +17,33 @@ EMAIL = "E-mail"
 BIRTH = "Date of birth"
 HIRING = "Date of hiring"
 
+ID = "Contact ID"
+
+# Services
+SERVICE_LABEL = "Service"
+DESCRIPTION = "Description"
+DURATION = "Duration"
+
+# Time & Durations
+APPOINTMENT_DATE = "Date of appointment"
+START_HOUR = "Start hour"
+END_HOUR = "End hour"
+DURATION = "Duration"
+
+# Misc
+
+NOTES = "Notes"
+
+# Contact fields
+
+
 CLIENT_FIELDS_INFO = [LAST_NAME,
                FIRST_NAME,
                ADDRESS,
                PHONE,
                EMAIL,
                BIRTH,
+               CONTACT_TYPE,
                ID]
 
 EMPLOYEE_FIELDS_INFO = [LAST_NAME,
@@ -34,24 +53,26 @@ EMPLOYEE_FIELDS_INFO = [LAST_NAME,
                EMAIL,
                BIRTH,
                HIRING,
+               CONTACT_TYPE,
                ID]
 
-FIELDS_INFO = [LAST_NAME,
-               FIRST_NAME,
-               ADDRESS,
-               PHONE,
-               EMAIL,
-               BIRTH,
-               HIRING]
+APPOINTMENTS_FIELDS = [
+    CLIENT,
+    EMPLOYEE,
+    APPOINTMENT_DATE,
+    START_HOUR,
+    END_HOUR,
+    DURATION,
+    SERVICE_LABEL,
+    NOTES
+]
 
+SERVICE_FIELDS = [
+    SERVICE_LABEL,
+    DESCRIPTION,
+    DURATION
+]
 
-# Appointment
-APP_DATE = "Date of appointment"
-APP_START_HOUR = "Start hour"
-APP_END_HOUR = "End hour"
-APP_DURATION = "Duration"
-SERVICE = "Service"
-NOTES = "Notes"
 
 # Regex
 
