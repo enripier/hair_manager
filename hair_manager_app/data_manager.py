@@ -175,7 +175,12 @@ def search_and_select_contact(contact_type, contact_database):
         for contact_index, contact in enumerate(contact_database)
         if any(searched_contact in str(value).lower() for value in contact.values())
     ]
-
+    
+    # If no contact found, abort search
+    if not found_contacts:
+        print("\nNo contact found \n")
+        return None
+    
     # If only one contact found, confirm and return said contact or abort operation
     if len(found_contacts) == 1:
         index, contact = found_contacts[0]
