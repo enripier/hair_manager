@@ -11,13 +11,13 @@ def hello(appointment_database, client_database, employee_database):
 
     while True:
 
-        print("\n===== Hair Do =====")
+        print("\n===== Hair Do =====\n")
 
         for i, name in enumerate(options):
             print(f"{i+1}. {name}")
         
         try:
-            choice = int(input(f"Choose action (1 - {len(options)}): ")) - 1
+            choice = int(input(f"\nChoose action (1 - {len(options)}): ")) - 1
 
         except ValueError:
             print(f"Invalid input. Please enter number (1 - {len(options)})")
@@ -25,6 +25,8 @@ def hello(appointment_database, client_database, employee_database):
 
         if 0 <= choice < len(c.HOME_OPTIONS):
             selected_option = options[choice]
+
+            print()
 
             if selected_option == c.SCHEDULE:
                 schedule.schedule()
@@ -45,7 +47,7 @@ def menu_contact_functions(contact_type, CONTACT_FUNCTIONS, contact_database):
     
     contact_function_list = list(CONTACT_FUNCTIONS.keys())
     
-    print(f" ==== MANAGE {contact_type.upper()} DATABASE ====")
+    print(f" ==== MANAGE {contact_type.upper()} DATABASE ====\n")
 
     for i, name in enumerate(contact_function_list):
         print(f"{i+1}. {name}")
@@ -55,6 +57,7 @@ def menu_contact_functions(contact_type, CONTACT_FUNCTIONS, contact_database):
     if 0 <= choice <= len(contact_function_list):
         selected_name = contact_function_list[choice]
         selected_function = CONTACT_FUNCTIONS[selected_name]
+        print()
         return selected_function(contact_database)
     
     else:
