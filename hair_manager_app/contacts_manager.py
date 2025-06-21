@@ -66,8 +66,9 @@ def modify_contact(contact_type, FIELDS_INFO, contact_database):
           "\n")
     
     # Show available fields for modification
-    interface.show_fields_info(c.FIELDS_INFO)
+    interface.show_fields_info(FIELDS_INFO)
 
+    # User chooses field to modify
     choice = input("\n"
                    "Choose field to modify: ").strip()
 
@@ -78,9 +79,15 @@ def modify_contact(contact_type, FIELDS_INFO, contact_database):
         
     choice = int(choice) -1
     
-    # User chooses field to modify and enters new value
-    if 0 <= choice < len(c.FIELDS_INFO):
-        field_chosen = c.FIELDS_INFO[choice]
+    # User enters new value
+    if 0 <= choice < len(FIELDS_INFO):
+
+        field_chosen = FIELDS_INFO[choice]
+
+        if field_chosen == c.ID:
+            print("\nCannot manually modify ID.")
+            return
+
         print(f"Modification of {field_chosen.lower()}")
         
         if field_chosen == c.PHONE:
@@ -168,7 +175,7 @@ def show_all_contacts(contact_type, FIELD_INFO, contact_database):
     ]
 
     # Create table
-    table = Table(title=f"========== List of {contact_type} ==========")
+    table = Table(title=f"========== List of {contact_type}s ==========")
 
     for field in visible_fields:
         table.add_column(field)
@@ -195,5 +202,6 @@ def generate_unique_id(contact_database):
     
     while True:
         new_id = f"{random.randint(0, 9999):04d}"  # Exemple: '0423'
+        new_id = f"{c.CONTACT_TYPE}"
         if new_id not in existing_ids:
             return new_id
