@@ -4,7 +4,7 @@ from . import data_manager as data
 
 
 def schedule():
-    print("Not implemented yet.\n")
+    print("\nNot implemented yet.\n")
 
 #en cours
 def add_appointment(appointment_database, client_database):
@@ -25,7 +25,7 @@ def add_appointment(appointment_database, client_database):
     appointment_end_time = data.isvalid_time("appointment end")
     # Note
 
-    appointment = {c.CLIENT: client_database[client], c.APP_DATE: appointment_date, c.APP_START_HOUR: appointment_start_time, c.APP_END_HOUR: appointment_end_time}
+    appointment = {c.CLIENT: client_database[client], c.APPOINTMENT_DATE: appointment_date, c.START_HOUR: appointment_start_time, c.END_HOUR: appointment_end_time}
 
     print(appointment)
     return appointment
