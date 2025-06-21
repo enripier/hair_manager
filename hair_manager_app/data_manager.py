@@ -1,5 +1,6 @@
-import re
 import datetime
+import re
+
 from . import constantes as c
 
 # On crée une nouvelle liste de clients modifiés pour l'affichage

@@ -3,6 +3,9 @@ from . import data_manager as data
 
 
 
+def schedule():
+    print("Not implemented yet.\n")
+
 #en cours
 def add_appointment(appointment_database, client_database):
     

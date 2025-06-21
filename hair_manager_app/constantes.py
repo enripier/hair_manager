@@ -1,5 +1,7 @@
 import os
+
 from . import clients_manager as clients
+from . import employees_manager as employees
 from . import app_interface as interface
 
 # Contacts
@@ -64,9 +66,20 @@ REGEX_PHONE_STR = "###-####"
 
 # App functions
 
+SCHEDULE = "Schedule"
+MANAGE_CLIENTS = "Manage client database"
+MANAGE_EMPLOYEES = "Manage employee database"
 EXIT = "Exit"
 
-# Clients
+
+HOME_OPTIONS = [
+    SCHEDULE,
+    MANAGE_CLIENTS,
+    MANAGE_EMPLOYEES,
+    EXIT
+    ]
+
+# Contacts functions
 ADD_CLIENT = "Add new client"
 MODIFY_CLIENT = "Modify client"
 DELETE_CLIENT = "Delete client"
@@ -80,6 +93,17 @@ CLIENT_FUNCTIONS = {ADD_CLIENT: lambda db: clients.add_client(db),
                     }
 CLIENT_FUNCTION_LIST = list(CLIENT_FUNCTIONS.keys())
 
+ADD_EMPLOYEE = "Add new employee"
+MODIFY_EMPLOYEE = "Modify employee"
+DELETE_EMPLOYEE = "Delete employee"
+SHOW_ALL_EMPLOYEES = "Show all employees"
+
+EMPLOYEE_FUNCTIONS = {ADD_EMPLOYEE: lambda db: employees.add_employee(db),
+                      MODIFY_EMPLOYEE: lambda db: employees.modify_employee(db),
+                      DELETE_EMPLOYEE: lambda db: employees.delete_employee(db),
+                      SHOW_ALL_EMPLOYEES: lambda db: employees.show_all_employees(db)
+                      }
+
 # Appointments
 ADD_NEW_APPOINTMENT = "Add new appointment"
 MODIFY_APPOINTMENT = "Modify an appointment"
@@ -88,9 +112,9 @@ DELETE_APPOINTMENT = "Delete an appointment"
 # File management
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
-CLIENTS_JSON_FILE = os.path.join(DATA_DIR, "clients.json")
 APP_DIR = os.path.join(BASE_DIR, "hair_manager")
 
 # Data (JSON)
-APPOINTMENTS_JSON = os.path.join(DATA_DIR, "appointments.json")
-CONTACTS_JSON = os.path.join(DATA_DIR, "clients.json")
+CLIENTS_JSON_FILE = os.path.join(DATA_DIR, "clients.json")
+EMPLOYEES_JSON_FILE = os.path.join(DATA_DIR, "employees.json")
+APPOINTMENTS_JSON_FILE = os.path.join(DATA_DIR, "appointments.json")

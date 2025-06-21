@@ -1,3 +1,5 @@
+import random
+
 from rich.table import Table
 from rich.console import Console
 
@@ -5,6 +7,34 @@ from . import constantes as c
 from . import app_interface as interface
 from . import data_manager as data
 from . import app_load as load
+
+def add_contact(contact_type, FIELDS_INFO, JSON_FILE, contact_database):
+
+    print()
+    print(f"===== Adding new {contact_type} ====")
+    print()
+
+    contact = {}
+
+    for field in FIELDS_INFO:
+        if field == c.ID:
+            value = generate_unique_id(contact_database)
+        if field == c.PHONE:
+            value = data.isvalid_phone()
+        elif field == c.EMAIL:
+            value = data.isvalid_email()
+        elif field == c.BIRTH or field == c.HIRING:
+            value = data.isvalid_date(field.lower())
+        else:
+            value = input(f"{contact_type.capitalize()} {field.lower()}").strip()
+        
+        contact[field] = value
+    
+    contact_database.append(contact)
+
+    load.save_database(contact_type, JSON_FILE, contact_database)
+
+    return contact_database
 
 def modify_contact(contact_type, FIELDS_INFO, contact_database):
     """
@@ -36,7 +66,7 @@ def modify_contact(contact_type, FIELDS_INFO, contact_database):
           "\n")
     
     # Show available fields for modification
-    interface.show_field_info(c.FIELDS_INFO)
+    interface.show_fields_info(c.FIELDS_INFO)
 
     choice = input("\n"
                    "Choose field to modify: ").strip()
@@ -150,3 +180,20 @@ def show_all_contacts(contact_type, FIELD_INFO, contact_database):
 
     # 4. Display table
     console.print(table)
+
+def generate_unique_id(contact_database):
+    """
+    Generates a unique 4-digit ID not yet in contact_database.
+
+    Args:
+        contact_database (list of dict): Contact database
+
+    Returns:
+        str: Unique 4-digit ID
+    """
+    existing_ids = {contact.get(c.ID) for contact in contact_database if c.ID in contact}
+    
+    while True:
+        new_id = f"{random.randint(0, 9999):04d}"  # Exemple: '0423'
+        if new_id not in existing_ids:
+            return new_id

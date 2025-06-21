@@ -1,60 +1,67 @@
-from . import constantes as c
-from . import data_manager as data
 import json
-from pathlib import Path
-import os
 
-def load_database(client_database):
-    #TODO : Adapter cette fonction pour toutes les databases et pas seulement clients
+from . import data_manager as data
+
+
+
+def load_database(contact_type, json_file, contact_database):
     """
-    Load the client database from JSON file.
+    Loads the contact database from JSON file.
 
     Args:
-        client_database (list of dict): List of clients.
+        contact_type (str) : Displayed contact type in user prompts
+        json_file(str): JSON data file path
+        contact_database (list of dict): List of contacts.
 
     Returns:
-        list of dict: The created client database with the JSON data.
+        list of dict: The created contact database with the JSON data.
 
     Raises:
         ###
     """
-    json_file = c.CLIENTS_JSON_FILE
     try:
-        if os.path.exists(json_file):
-            with open(json_file, "r", encoding = "utf-8") as imported_file:
-                json_data = json.load(imported_file)
-                client_database.extend(json_data)
-                data.sort_contact_database(client_database)
-                print(" ==== Client database loaded... ====")
-                print()
-                return client_database
+        with open(json_file, "r", encoding = "utf-8") as imported_file:
+            json_data = json.load(imported_file)
+            contact_database.extend(json_data)
+            data.sort_contact_database(contact_database)
+            print(f" ==== {contact_type} database loaded... ====")
+            print()
+            return contact_database
     
     except FileNotFoundError:
-        print(f"File {json_file} n'existe pas. No client database loaded.")
+        print(f"File {json_file} doesn't exist. No contact database loaded.")
         return []
+    
     except json.JSONDecodeError:
-        print(f"Erreur de lecture JSON : le fichier {json_file} est corrompu ou vide.")
+        print(f"Error reading JSON : {json_file} is corrupt or empty.")
         return []
-    except OSError as e:
-        print(f"Erreur lors de l'ouverture du fichier JSON : {e}")
-        return []
-
-def save_database(client_database):
-
-    data.sort_contact_database(client_database)
-
-    json_file = c.CLIENTS_JSON_FILE
-
-    try:
-        with open(json_file, "w") as exported_file:
-            json.dump(client_database, exported_file, indent = 4)
-            print = ("Client database successfully saved")
     
     except OSError as e:
-        print(f"Erreur lors de l'enregistrement du fichier JSON : {e}")
+        print(f"Error opening {json_file} : {e}")
+        return []
 
-client_database = []
-appointments_database = []
-employees_database = []
-#print(client_database)
-#load_database(client_database)
+def save_database(contact_type, json_file, contact_database):
+    """
+    Saves the contact database to JSON file.
+
+    Args:
+        contact_type (str) : Displayed contact type in user prompts
+        json_file(str): JSON data file path
+        contact_database (list of dict): List of contacts.
+
+    Returns:
+        list of dict: The created contact database with the JSON data.
+
+    Raises:
+        ###
+    """
+
+    data.sort_contact_database(contact_database)
+
+    try:
+        with open(json_file, "w", encoding="utf-8") as exported_file:
+            json.dump(contact_database, exported_file, indent = 4)
+            print(f"{contact_type.capitalize()} database successfully saved")
+    
+    except OSError as e:
+        print(f"Error saving {json_file} : {e}")

@@ -44,7 +44,7 @@ def add_client(client_database):
     client_database.append(client)
 
     # Sorting & saving client database in JSON
-    load.save_database(client_database)
+    load.save_database("client", c.CLIENTS_JSON_FILE, client_database)
 
     return client_database
 
