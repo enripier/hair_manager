@@ -1,6 +1,3 @@
-from rich.table import Table
-from rich.console import Console
-
 from . import constantes as c
 from . import contacts_manager as contacts
 from . import data_manager as data
